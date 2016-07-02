@@ -9,9 +9,13 @@ module.exports = function (done){
 
     $.router.get('/',function(req,res,next){
 
-        res.end('123321');
+        res.end(test());
 
     });
 
+
+    function test(){
+        return "no 11";
+    };
     done();
 };
