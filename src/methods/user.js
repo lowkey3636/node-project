@@ -11,24 +11,24 @@ module.exports = function (done) {
      email : {required: true}
      });*/
 
-    $.method('user.add').register( function (params,callback) {
+    $.method('user.add').register(  function (params,callback) {
 
         params.name = params.name.toLowerCase();
         {
-            const user = await $.method('user.get').call({name:params.name});
+            const user =  $.method('user.get').call({name:params.name});
             if(user) return callback(new Error('user already exists'));
         }
         {
-            const user = await $.method('user.get').call({eamil:params.email});
+            const user =  $.method('user.get').call({eamil:params.email});
             if(user) return callback(new Error('user already exists'));
         }
         params.password = $.utils.encryptPassword(params.password.toString());
-        const user = await $.model.User(params);
+        const user =  $.model.User(params);
         user.save(callback);
     });
 
-    $.method('user.update').register( function(params,callback){
-        const user = await $.method('user.get').call(params);
+    $.method('user.update').register(  function(params,callback){
+        const user =  $.method('user.get').call(params);
         if(!user){
             return callback(new Error('user does not exists'))
         }
@@ -37,7 +37,7 @@ module.exports = function (done) {
 
 
 
-    $.method('user.get').register( function(params,callback){
+    $.method('user.get').register(   function(params,callback){
         const query = {};
         if (params._id){
             query._id = params._id;
