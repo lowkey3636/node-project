@@ -4,18 +4,15 @@
 
 'use strict';
 
-
 module.exports = function (done){
 
     $.router.post('/api/login1',async function(req,res,next){
-
-        var request = require('request');
-        request('http://rrweb.cn/', function (error, response, body) {
+        $.request('http://rrweb.cn/', function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body) // 打印google首页
+                //console.log(body) // 打印google首页
             }
         });
-        const  user = await $.method('user.get').call(req.body);
+        const user =  await $.method('user.get').call(req.body);
         if(!user) {
             return res.json({code : -1,msg:'用户不存在'});
         }
@@ -31,7 +28,7 @@ module.exports = function (done){
 
     });
 
-    
+
     $.router.post('/api/signup',async function(req,res,next){
         const  user = await $.method('user.add').call(req.body);
         res.json({success: true});

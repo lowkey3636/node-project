@@ -11,7 +11,7 @@ module.exports = function (done) {
      email : {required: true}
      });*/
 
-    $.method('user.add').register(  function (params,callback) {
+    $.method('user.add').register(   function (params,callback) {
 
         params.name = params.name.toLowerCase();
         {
@@ -27,7 +27,7 @@ module.exports = function (done) {
         user.save(callback);
     });
 
-    $.method('user.update').register(  function(params,callback){
+    $.method('user.update').register(   function(params,callback){
         const user =  $.method('user.get').call(params);
         if(!user){
             return callback(new Error('user does not exists'))
@@ -37,7 +37,7 @@ module.exports = function (done) {
 
 
 
-    $.method('user.get').register(   function(params,callback){
+    $.method('user.get').register(    function(params,callback){
         const query = {};
         if (params._id){
             query._id = params._id;

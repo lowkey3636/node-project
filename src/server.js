@@ -4,6 +4,8 @@
  */
  import ProjectCore from 'project-core'
  import path from 'path'
+ import request from 'request';
+
 
  const $ = global.$ = new ProjectCore();
 
@@ -15,20 +17,18 @@
    if(env){
      $.config.load(path.resolve(__dirname,'../config',env+'.js'));
    }
-   $.env = env;
+     $.env = env;
+     $.request = request;
+
    done();
 
  });
-
 //初始化MongoDB
 $.init.load(path.resolve(__dirname,'init','mongodb.js'));
-
 $.init.load(path.resolve(__dirname,'models'));
-
 //初始化methods
-$.init.load(path.resolve(__dirname,'methods'))
-
-//初始化MongoDB
+$.init.load(path.resolve(__dirname,'methods'));
+//初始化Express
 $.init.load(path.resolve(__dirname,'init','express.js'));
 
 $.init.load(path.resolve(__dirname,'routes'));
