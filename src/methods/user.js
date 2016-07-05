@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function (done) {
+module.exports =  function (done) {
 
     /*
      $.method('user.add').check({

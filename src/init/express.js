@@ -21,7 +21,10 @@ module.exports = function (done){
        routerWrap[method] = function (path, ...fnList){
            fnList = fnList.map(fn => {
               return function (req ,res,next){
-                  const  ret = fn(req,res,next);
+
+                  var p = initP(req ,res,next);
+
+                  const  ret = fn(p);
                   if(ret.catch){
                       ret.catch(next);
                   }
@@ -40,3 +43,34 @@ module.exports = function (done){
     });
 
 };
+
+
+function initP(req ,res,next){
+    var p = {};
+    p.req = req;
+    p.res = res;
+    p.next = next;
+    initJSONAndView(p);
+    return p;
+}
+function initJSONAndView(p){
+    p.error = function (msg,data) {
+        initDefaultJSON(p,-1,msg,data);
+    };
+    p.success = function (msg,data) {
+        initDefaultJSON(p,0,msg,data);
+    };
+    p.jsonResult = function (code,msg,data){
+        initDefaultJSON(p,code,msg,data);
+    }
+    p.view = function (path,model) {
+        p.res.render(path,model);
+    };
+}
+function initDefaultJSON(p,code,msg,data){
+    if(typeof msg != 'string'){
+        data = msg;
+        msg = "";
+    }
+    p.res.json({code:0,msg:msg,data:data});
+}
