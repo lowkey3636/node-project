@@ -20,6 +20,7 @@ module.exports = function (done){
         return p.success("成功啦");
     });
 
+    
     $.router.get('/',async function(p){
          return p.view('test',{title:'文章列表'});
     });
