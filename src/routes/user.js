@@ -31,7 +31,7 @@ module.exports = function (done){
 
     $.router.post('/api/signup',async function(p){
         const  user = await $.method('user.add').call(p.req.body);
-        p.res.json({success: true});
+        return p.success("ok");
     });
 
 
