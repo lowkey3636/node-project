@@ -38,6 +38,7 @@ module.exports = function (done){
     app.use(router);
     app.use('/static',serveStatic(path.resolve(__dirname,'../../static')));
     app.set("view engine","ejs");
+    app.use(express.session());
     app.listen($.config.get('web.port'),(err) => {
         done(err);
     });
