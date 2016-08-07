@@ -5,10 +5,20 @@ import express from  'express';
 import serveStatic from 'serve-static';
 import bodyParser from 'body-parser';
 import multiparty from 'connect-multiparty';
+import session  from 'express-session';
 
 
 module.exports = function (done){
     const app = express();
+
+    var sessionStore = new session.MemoryStore();
+    app.use(session({
+        store:sessionStore,
+        resave:false,
+        saveUninitialized:false,
+        secret:'123'
+    }));
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:false}));
     app.use(multiparty());
@@ -38,7 +48,7 @@ module.exports = function (done){
     app.use(router);
     app.use('/static',serveStatic(path.resolve(__dirname,'../../static')));
     app.set("view engine","ejs");
-    app.use(express.session());
+
     app.listen($.config.get('web.port'),(err) => {
         done(err);
     });
@@ -52,6 +62,15 @@ function initP(req ,res,next){
     p.res = res;
     p.next = next;
     initJSONAndView(p);
+    if(p.req.session.user!=null){
+        p.loginUser = p.req.session.user;
+    }
+    for(var key in p.req.query){
+        p[key] = p.req.query[key];
+    }
+
+
+
     return p;
 }
 function initJSONAndView(p){

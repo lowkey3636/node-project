@@ -17,8 +17,9 @@ module.exports = function (done){
         nickname:{type:String},
         about : {type:String}
     });
+    /*
     $.mongodb.model('User',User);
-    $.model.User = $.mongodb.model('User');
+    $.model.User = $.mongodb.model('User');*/
 
     done();
 
