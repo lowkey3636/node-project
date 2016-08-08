@@ -36,6 +36,7 @@
     "ejs": "^2.4.2",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
+    "forever": "^0.15.2",
     "mongoose": "^4.5.3",
     "multiparty": "^4.1.2",
     "project-core": "^0.1.3",
