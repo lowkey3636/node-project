@@ -8,7 +8,7 @@
     "watch": "npm run clean && babel src -d target --watch",
     "compile": "npm run clean && babel src -d target",
     "clean": "rm -rf target",
-    "start":"npm run clean && babel src -d target && forever stop target/server.js && forever start target/server.js"
+    "start":"forever stopall  && npm run clean && babel src -d target && forever start target/server.js"
   },
   "repository": {
     "type": "git",
