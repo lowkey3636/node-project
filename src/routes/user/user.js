@@ -19,8 +19,9 @@ module.exports = function (done){
         var params = {};
         params.loginName = "tt";
         params.password = '123';
-        const token = await $.method('user.login').call(params);
-        p.req.session.user = token;
+        const tokenInfo = await $.method('user.login').call(params);
+        //"wdkkfront-"
+        p.req.session.user = "wdkkfront-"+tokenInfo.id;
         return p.success("ok");
         //p.req.session.user = {a:"1"};
     });

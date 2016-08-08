@@ -20,7 +20,7 @@ module.exports =  function (done) {
     });
 
     $.method('user.login').register( async function(params,callback) {
-        const result = await $.post('/api/user/login',params);
+        const result = await $.post('/login',params);
         if(result){
             return result.data;
         }
@@ -28,7 +28,7 @@ module.exports =  function (done) {
     });
 
     $.method('user.getLoginUserByToken').register(   async function(params,callback){
-        const result = await $.post('/api/user/getLoginUser',params);
+        const result = await $.post('/api/user/getLoginUser1',params);
         return result.data;
     });
 
