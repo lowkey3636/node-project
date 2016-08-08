@@ -13,7 +13,7 @@ module.exports = function (done){
 
 
     $.router.get('/',async function(p){
-         return p.view('test',{title:"模式内容111111"});
+         return p.view('test',{title:"内容111222  "});
     });
     $.router.get('/login',async function(p){
         var params = {};
