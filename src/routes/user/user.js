@@ -8,13 +8,10 @@ module.exports = function (done){
 
 
 
-
-
-
-
     $.router.get('/',async function(p){
          return p.view('test',{title:"内容111222  "});
     });
+
     $.router.get('/login',async function(p){
         var params = {};
         params.loginName = "tt";
@@ -23,7 +20,6 @@ module.exports = function (done){
         //"wdkkfront-"
         p.req.session.user = "wdkkfront-"+tokenInfo.id;
         return p.success("ok");
-        //p.req.session.user = {a:"1"};
     });
     //http://localhost:3000/getLogin?token=f6d61160-bd39-40b1-bad8-4a2e3be98586
     $.router.get('/getLogin',async function(p){
