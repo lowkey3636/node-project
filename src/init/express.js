@@ -6,6 +6,7 @@ import serveStatic from 'serve-static';
 import bodyParser from 'body-parser';
 import multiparty from 'connect-multiparty';
 import session  from 'express-session';
+import url from 'url' ;
 
 
 module.exports = function (done){
@@ -84,6 +85,7 @@ function initJSONAndView(p){
         initDefaultJSON(p,code,msg,data);
     }
     p.view = function (path,model) {
+        model.base = "http://"+p.req.headers.host;
         p.res.render(path,model);
     };
 }
